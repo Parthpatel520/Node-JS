@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD-MONGODB</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <form class="m-5" action="/saveData" method="post" enctype="multipart/form-data">
+
+        <input type="hidden" name="id" value="<%= (user.id != '')?user.id:'' %>">
+
+        <label for="">NAME : </label>
+        <input type="text" name="name" value="<%= (user.id != '')?user.name:'' %>"><br><br>
+
+        <label for="">AGE : </label>
+        <input type="number" name="age" value="<%= (user.id != '')?user.age:'' %>"><br><br>
+
+        <label for="">EMAIL : </label>
+        <input type="email" name="email" value="<%= (user.id != '')?user.email:'' %>"><br><br>
+
+        <label for="">Image:- </label>
+        <input type="file" name="image"><br><br>
+
+        <input type="submit" value="Save" class="btn btn-outline-primary ms-4 mt-3">
+
+    </form>
+
+    <br><br>
+
+    <table border="4" class="table table-bordered table-dark table-striped ">
+        <tr class="text-center">
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Email</th>
+            <th>image</th>
+            <th>Action</th>
+        </tr>
+        <% data.forEach((i)=>{ %>
+            <tr class="text-center ">
+                <td>
+                    <%= i.id %>
+                </td>
+                <td>
+                    <%= i.name %>
+                </td>
+                <td>
+                    <%= i.age %>
+                </td>
+                <td>
+                    <%= i.email %>
+                </td>
+                <td>
+                    <img src="<%= i.image%>" alt="User image" height="50px" width="50px" />
+                </td>
+                <td><a class="btn btn-outline-success me-2" href="/edit/<%= i.id %>">Edit</a> <a class="btn btn-outline-danger" href="/del/<%= i.id%>">Delete</a></td>
+            </tr>
+            <%}) %>
+    </table>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
